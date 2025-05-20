@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sinais de Compra/Venda com IA</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0f0f0f;
+      color: #fff;
+      text-align: center;
+      padding: 40px;
+    }
+    .signal-box {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 10px;
+      display: inline-block;
+      box-shadow: 0 0 15px #00ffcc33;
+    }
+    .signal {
+      font-size: 28px;
+      margin-top: 20px;
+    }
+    .buy {
+      color: #00ff00;
+    }
+    .sell {
+      color: #ff3333;
+    }
+    .timestamp {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <h1>Sinais de Trade com IA (M1 / Expiração 5 Min)</h1>
+  <div class="signal-box">
+    <div id="signal" class="signal">Aguardando sinal...</div>
+    <div id="timestamp" class="timestamp"></div>
+  </div>
+
+  <script>
+    function gerarSinal() {
+      const sinal = Math.random() > 0.5 ? 'COMPRA (CALL)' : 'VENDA (PUT)';
+      const signalEl = document.getElementById('signal');
+      const timestampEl = document.getElementById('timestamp');
+
+      signalEl.textContent = `SINAL: ${sinal}`;
+      signalEl.className = `signal ${sinal.includes('COMPRA') ? 'buy' : 'sell'}`;
+
+      const agora = new Date();
+      const hora = agora.toLocaleTimeString('pt-BR');
+      timestampEl.textContent = `Gerado às ${hora}`;
+    }
+
+    gerarSinal();
+    setInterval(gerarSinal, 60000);
+  </script>
+</body>
+</html>
